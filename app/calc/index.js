@@ -1,4 +1,5 @@
 const metrix = require('./metix'),
+    config = require('./config'),
     calcVectors = require('./calcVectors'),
     calcTrees = require('./calcTrees');
 
@@ -14,9 +15,6 @@ module.exports = (points, trees) => {
             trees[key].x *=  metixValue.x;
             trees[key].y *=  metixValue.y;
         }
-
-
-
 
     const zones = [];
     for (let i = 0; i < newPoints.length - 1; i++) {
@@ -41,9 +39,19 @@ module.exports = (points, trees) => {
             },
             start: points[i],
             end: points[i + 1],
+            S: config.sizeZone * 2 * Math.sqrt(vector.x * vector.x + vector.y * vector.y),
             trees: trees ? calcTrees(newPoints[i], newPoints[i + 1], trees, metixValue) : null,
         });
     }
+
+    //PRINT_ALL_TREES TEST ONLY!!!!
+    //*
+    const printTrees = require('../kml/createCircleFile'),
+        createCircle = require('./createCircle');
+    const allTrees = [];
+    for (let key in trees) allTrees.push(createCircle(trees[key], metixValue));
+    printTrees([{trees: allTrees}], "ALL_TREES", 0);
+    //*/
 
     return zones;
 };

@@ -29,5 +29,5 @@ module.exports = (polygons, name) => {
     </Document></kml>
     `;
 
-    fs.writeFile(path.resolve(`public/${name}/points-${name}.kml`), dataLine, () => {});
+    fs.writeFile(path.resolve(`public/${name}/${name}-points.kml`), dataLine, () => {});
 };

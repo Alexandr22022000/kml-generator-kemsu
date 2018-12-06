@@ -2,6 +2,7 @@ const createSquaresFile = require('./createSquaresFile'),
     createSquareFile = require('./createSquareFile'),
     createPointsFile = require('./createPointsFile'),
     createCirclesFile = require('./createCirclesFile'),
+    createCircleFile = require('./createCircleFile'),
     path = require('path'),
     fs = require('fs');
 
@@ -10,10 +11,14 @@ module.exports = (polygons, name) => {
         createSquaresFile(polygons, name);
         createPointsFile(polygons, name);
 
-        if (polygons[0].trees) createCirclesFile(polygons, name);
+        if (polygons[0].trees) {
+            createCirclesFile(polygons, name);
 
-        for (let key in polygons) {
-            createSquareFile(polygons[key], +key, name);
+            for (let key in polygons)
+                createCircleFile(polygons, name, +key);
         }
+
+        for (let key in polygons)
+            createSquareFile(polygons[key], +key, name);
     });
 };

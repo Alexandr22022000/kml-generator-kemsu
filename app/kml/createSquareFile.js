@@ -26,6 +26,7 @@ module.exports = (polygon, key, name) => {
                     <SimpleData name="id">${key}</SimpleData>
                     <SimpleData name="start">${key + 1}</SimpleData>
                     <SimpleData name="end">${key + 2}</SimpleData>
+                    <SimpleData name="S">${polygon.S}</SimpleData>
                     <SimpleData name="type">0</SimpleData>
                 </SchemaData></ExtendedData>
                 <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>${polygon.zone.a.x},${polygon.zone.a.y} ${polygon.zone.b.x},${polygon.zone.b.y} ${polygon.zone.c.x},${polygon.zone.c.y} ${polygon.zone.d.x},${polygon.zone.d.y} ${polygon.zone.a.x},${polygon.zone.a.y}</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>

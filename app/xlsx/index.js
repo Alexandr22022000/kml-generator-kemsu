@@ -2,7 +2,7 @@ const XlsxPopulate = require('xlsx-populate');
 
 module.exports = (name) => {
     return new Promise((resolve, reject) => {
-        XlsxPopulate.fromFileAsync(`./src/${name}.xlsx`)
+        XlsxPopulate.fromFileAsync(`./src/${name}`)
             .then(workbook => {
                 let i = 1;
                 const value = [];
@@ -18,7 +18,7 @@ module.exports = (name) => {
                     lo = lo.substring(0, lo.length - 2);
                     lo = +lo;
 
-                    value.push({y: la, x: lo});
+                    value.push({y: la, x: lo, id: (i - 1) / 3});
                 }
 
                 resolve(value);

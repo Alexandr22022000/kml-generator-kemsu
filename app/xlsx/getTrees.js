@@ -4,7 +4,7 @@ var utm = require('utm');
 
 module.exports = (name) => {
     return new Promise((resolve, reject) => {
-        XlsxPopulate.fromFileAsync(`./src/${name}.xlsx`)
+        XlsxPopulate.fromFileAsync(`./src/${name}`)
             .then(workbook => {
                 const values = [];
                 let i = 2;
